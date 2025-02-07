@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinPoint Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .clue {
+            display: none;
+            margin: 10px;
+            font-size: 18px;
+        }
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PinPoint Game</h1>
+    <p>Try to guess the category in as few clues as possible!</p>
+    
+    <div id="clues">
+        <p class="clue">Clue 1: Cake</p>
+        <p class="clue">Clue 2: Berry</p>
+        <p class="clue">Clue 3: Tofu</p>
+        <p class="clue">Clue 4: Lettuce</p>
+        <p class="clue">Clue 5: Apple</p>
+    </div>
+    
+    <button onclick="revealClue()">Reveal Clue</button>
+    
+    <input type="text" id="guess" placeholder="Enter your guess">
+    <button onclick="checkGuess()">Submit Guess</button>
+    
+    <p id="result"></p>
+
+    <script>
+        let currentClue = 0;
+        const clues = document.querySelectorAll('.clue');
+        const answer = "Food";
+
+        function revealClue() {
+            if (currentClue < clues.length) {
+                clues[currentClue].style.display = 'block';
+                currentClue++;
+            }
+        }
+
+        function checkGuess() {
+            const userGuess = document.getElementById("guess").value.trim().toLowerCase();
+            if (userGuess === answer.toLowerCase()) {
+                document.getElementById("result").innerText = "Correct! The answer is " + answer + "!";
+            } else {
+                document.getElementById("result").innerText = "Try again!";
+            }
+        }
+    </script>
+</body>
+</html>
