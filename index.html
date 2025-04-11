@@ -42,8 +42,6 @@
         <p class="clue">Clue 5: De Facto</p>
     </div>
 
-    <button onclick="revealClue()">Reveal Clue</button>
-
     <div>
         <input type="text" id="guess" placeholder="Enter your guess">
         <button onclick="checkGuess()">Submit Guess</button>
@@ -59,16 +57,16 @@
         let attempts = 0;
         const maxAttempts = 5;
 
+        // Start the game by revealing the first clue
+        window.onload = function() {
+            revealClue();  // Reveal the first clue when the game starts
+        }
+
         function revealClue() {
             if (currentClue < clues.length) {
                 clues[currentClue].style.display = 'block';
                 currentClue++;
             }
-
-            // Reset input and message
-            document.getElementById("guess").value = "";
-            document.getElementById("result").innerText = "";
-            document.getElementById("infoMessage").innerText = "";
         }
 
         function checkGuess() {
@@ -76,15 +74,15 @@
             attempts++;
 
             if (userGuess === correctAnswer.toLowerCase()) {
-                document.getElementById("result").innerText = "Correct! The answer is " + correctAnswer + "!";
-                document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
+                document.getElementById("result").innerText = "Correct! For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
+                document.getElementById("infoMessage").innerText = "";
                 disableInputs();
             } else {
                 // Reveal the next clue automatically if the guess is wrong
                 if (currentClue < clues.length) {
                     revealClue();
                 }
-                
+
                 // If max attempts are reached, show the end message
                 if (attempts >= maxAttempts) {
                     document.getElementById("result").innerText = "Incorrect, the correct answer is " + correctAnswer + "!";
