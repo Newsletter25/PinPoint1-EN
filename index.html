@@ -24,8 +24,8 @@
 </head>
 <body>
     <h1>PinPoint Game</h1>
-    <p>Reveal the clue to try to guess the category in less than 5 attempts!</p>
-    
+    <p>Try to guess the category in as few clues as possible!</p>
+
     <div id="clues">
         <p class="clue">Clue 1: Active</p>
         <p class="clue">Clue 2: Passive</p>
@@ -33,33 +33,56 @@
         <p class="clue">Clue 4: Nominee</p>
         <p class="clue">Clue 5: De Facto</p>
     </div>
-    
+
     <button onclick="revealClue()">Reveal Clue</button>
-    
-    <input type="text" id="guess" placeholder="Enter your guess">
-    <button onclick="checkGuess()">Submit Guess</button>
-    
+
+    <div>
+        <input type="text" id="guess" placeholder="Enter your guess">
+        <button onclick="checkGuess()">Submit Guess</button>
+    </div>
+
     <p id="result"></p>
+    <p id="infoMessage" style="font-weight: bold;"></p>
 
     <script>
         let currentClue = 0;
         const clues = document.querySelectorAll('.clue');
-        const answer = "Types of Directors";
+        const correctAnswer = "Types of Directors";
+        let attempts = 0;
+        const maxAttempts = 5;
 
         function revealClue() {
             if (currentClue < clues.length) {
                 clues[currentClue].style.display = 'block';
                 currentClue++;
             }
+
+            // Reset input and message
+            document.getElementById("guess").value = "";
+            document.getElementById("result").innerText = "";
+            document.getElementById("infoMessage").innerText = "";
         }
 
         function checkGuess() {
             const userGuess = document.getElementById("guess").value.trim().toLowerCase();
-            if (userGuess === answer.toLowerCase()) {
-                document.getElementById("result").innerText = "Correct! The answer is " + answer + "!";
+            attempts++;
+
+            if (userGuess === correctAnswer.toLowerCase()) {
+                document.getElementById("result").innerText = "Correct! The answer is " + correctAnswer + "!";
+                document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
+                disableInputs();
+            } else if (attempts >= maxAttempts) {
+                document.getElementById("result").innerText = "Incorrect, the correct answer is " + correctAnswer + "!";
+                document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
+                disableInputs();
             } else {
                 document.getElementById("result").innerText = "Try again!";
             }
+        }
+
+        function disableInputs() {
+            document.getElementById("guess").disabled = true;
+            document.querySelector("button[onclick='checkGuess()']").disabled = true;
         }
     </script>
 </body>
