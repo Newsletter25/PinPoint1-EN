@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PinPoint Game</title>
     <style>
-        body {
+        body {https://github.com/Newsletter25/PinPoint1-EN/blob/main/index.html
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
@@ -53,7 +53,11 @@
     <script>
         let currentClue = 0;
         const clues = document.querySelectorAll('.clue');
-        const correctAnswer = "Types of Directors";
+        const correctAnswers = [
+            "director", "directors", 
+            "types of directors", "type of director", 
+            "types of director", "type of directors"
+        ];
         let attempts = 0;
         const maxAttempts = 5;
 
@@ -73,7 +77,8 @@
             const userGuess = document.getElementById("guess").value.trim().toLowerCase();
             attempts++;
 
-            if (userGuess === correctAnswer.toLowerCase()) {
+            // Check if the user's guess matches any acceptable variation
+            if (correctAnswers.includes(userGuess)) {
                 document.getElementById("result").innerText = "Correct! For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
                 document.getElementById("infoMessage").innerText = "";
                 disableInputs();
@@ -85,7 +90,7 @@
 
                 // If max attempts are reached, show the end message
                 if (attempts >= maxAttempts) {
-                    document.getElementById("result").innerText = "Incorrect, the correct answer is " + correctAnswer + "!";
+                    document.getElementById("result").innerText = "Incorrect, the correct answer is Types of Directors!";
                     document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
                     disableInputs();
                 } else {
