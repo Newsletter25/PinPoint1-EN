@@ -20,11 +20,19 @@
             font-weight: bold;
             margin-top: 20px;
         }
+        #hint {
+            font-size: 18px;
+            font-style: italic;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>PinPoint Game</h1>
     <p>Try to guess the category in as few clues as possible!</p>
+
+    <!-- Hint Message -->
+    <p id="hint">Hint: Types of _____________</p>
 
     <div id="clues">
         <p class="clue">Clue 1: Active</p>
@@ -71,12 +79,20 @@
                 document.getElementById("result").innerText = "Correct! The answer is " + correctAnswer + "!";
                 document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
                 disableInputs();
-            } else if (attempts >= maxAttempts) {
-                document.getElementById("result").innerText = "Incorrect, the correct answer is " + correctAnswer + "!";
-                document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
-                disableInputs();
             } else {
-                document.getElementById("result").innerText = "Try again!";
+                // Reveal the next clue automatically if the guess is wrong
+                if (currentClue < clues.length) {
+                    revealClue();
+                }
+                
+                // If max attempts are reached, show the end message
+                if (attempts >= maxAttempts) {
+                    document.getElementById("result").innerText = "Incorrect, the correct answer is " + correctAnswer + "!";
+                    document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
+                    disableInputs();
+                } else {
+                    document.getElementById("result").innerText = "Try again!";
+                }
             }
         }
 
