@@ -24,14 +24,14 @@
 </head>
 <body>
     <h1>PinPoint Game</h1>
-    <p>Try to guess the category in as few clues as possible!</p>
+    <p>Reveal the clue to try to guess the category in less than 5 attempts!</p>
     
     <div id="clues">
-        <p class="clue">Clue 1: Cake</p>
-        <p class="clue">Clue 2: Berry</p>
-        <p class="clue">Clue 3: Tofu</p>
-        <p class="clue">Clue 4: Lettuce</p>
-        <p class="clue">Clue 5: Apple</p>
+        <p class="clue">Clue 1: Active</p>
+        <p class="clue">Clue 2: Passive</p>
+        <p class="clue">Clue 3: Outside</p>
+        <p class="clue">Clue 4: Nominee</p>
+        <p class="clue">Clue 5: De Facto</p>
     </div>
     
     <button onclick="revealClue()">Reveal Clue</button>
@@ -44,7 +44,7 @@
     <script>
         let currentClue = 0;
         const clues = document.querySelectorAll('.clue');
-        const answer = "Food";
+        const answer = "Types of Directors";
 
         function revealClue() {
             if (currentClue < clues.length) {
