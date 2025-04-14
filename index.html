@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PinPoint Game</title>
     <style>
-        body {https://github.com/Newsletter25/PinPoint1-EN/blob/main/index.html
+        body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
@@ -23,6 +23,10 @@
         #hint {
             font-size: 18px;
             font-style: italic;
+            margin-top: 20px;
+        }
+        #infoMessage {
+            font-size: 16px;
             margin-top: 20px;
         }
     </style>
@@ -79,8 +83,8 @@
 
             // Check if the user's guess matches any acceptable variation
             if (correctAnswers.includes(userGuess)) {
-                document.getElementById("result").innerText = "Correct! For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
-                document.getElementById("infoMessage").innerText = "";
+                document.getElementById("result").innerHTML = "Correct!";
+                document.getElementById("infoMessage").innerHTML = 'For more information, go to <a href="https://infozone.omega.dce-eir.net/english/r5041000/tlr/tlr09/drctrslblt-e.html" target="_blank">Directors\' liability – Tax programs TSO/NVCC collections</a> or <a href="https://infozone.omega.dce-eir.net/english/r5044502/0000/5046/5046_601/tstyrknwldg/drctrslbltyssssmntchcklst-e.asp" target="_blank">Directors’ liability assessment – Checklist</a>.';
                 disableInputs();
             } else {
                 // Reveal the next clue automatically if the guess is wrong
@@ -91,7 +95,7 @@
                 // If max attempts are reached, show the end message
                 if (attempts >= maxAttempts) {
                     document.getElementById("result").innerText = "Incorrect, the correct answer is Types of Directors!";
-                    document.getElementById("infoMessage").innerText = "For more information about this topic, refer to the … page / Pour plus d’informations à ce sujet, consulter la page";
+                    document.getElementById("infoMessage").innerHTML = 'For more information, go to <a href="https://infozone.omega.dce-eir.net/english/r5041000/tlr/tlr09/drctrslblt-e.html" target="_blank">Directors\' liability – Tax programs TSO/NVCC collections</a> or <a href="https://infozone.omega.dce-eir.net/english/r5044502/0000/5046/5046_601/tstyrknwldg/drctrslbltyssssmntchcklst-e.asp" target="_blank">Directors’ liability assessment – Checklist</a>.';
                     disableInputs();
                 } else {
                     document.getElementById("result").innerText = "Try again!";
